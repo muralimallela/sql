@@ -1,0 +1,62 @@
+-- ASSIGNMENT ON MAX & MIN :
+
+-- 41. WAQTD NAME OF THE EMPLOYEE EARNING MAXIMUM SALARY
+SELECT ename
+FROM emp
+WHERE sal = (SELECT max(sal)
+             FROM emp);
+
+-- 42. WAQTD NAME OF THE EMPLOYEE EARNING MINIMUM SALARY
+SELECT ename
+FROM emp
+WHERE sal = (SELECT min(sal)
+             FROM emp);
+
+-- 43. WAQTD NAME AND HIREDATE OF THE EMPLOYEE HIRED BEFORE ALL THE EMPLOYEES (FIRST EMP)
+SELECT ename, hiredate
+FROM emp
+WHERE hiredate = (SELECT min(hiredate)
+                  FROM emp);
+
+-- 44. WAQTD NAME AND HIREDATE OF THE EMPLOYEES HIRED AT THE LAST
+SELECT ename, hiredate
+FROM emp
+WHERE hiredate = (SELECT max(hiredate)
+                  FROM emp);
+
+-- 45. WAQTD NAME, COMM OF THE EMPLOYEE WHO EARNS MIN COMISSION
+SELECT ename, comm
+FROM emp
+WHERE comm = (SELECT min(comm)
+              FROM emp);
+
+-- 46. WAQTD NAME, SAL AND COMM OF THE EMPLOYEE EARNING MAXIMUM COMISSION
+SELECT ename, sal, comm
+FROM emp
+WHERE comm = (SELECT max(comm)
+              FROM emp);
+
+-- 47.WAQTD DETAILS OF THE EMPLOYEE WHO HAS GREATEST EMPNO
+SELECT *
+FROM emp
+WHERE empno = (SELECT max(empno)
+              FROM emp);
+
+-- 48. WAQTD DETAILS OF THE EMPLOYEES HAVING THE LEAST HIREDATE
+SELECT *
+FROM emp
+WHERE hiredate = (SELECT min(hiredate)
+                 FROM emp);
+
+-- 49. WAQTD DETAILS OF THE EMPLOYEES EARNING LEAST ANNUAL SALARY
+SELECT *
+FROM emp
+WHERE sal*12 = (SELECT min(sal*12)
+                 FROM emp);
+
+-- 50. WAQTD NAME, ANNUAL SALARY OF THE EMPLOYEES IF THEIR ANNUAL SALARY IS MORE THAN ALL THE SALESMAN
+SELECT ename, sal * 12 ANNUAL_SAL
+FROM emp
+WHERE sal * 12 > (SELECT max(sal)
+                  FROM emp
+                  WHERE job = 'SALESMAN');
