@@ -142,3 +142,53 @@ WHERE ename LIKE 'A____A';
 SELECT ename, job
 FROM emp
 WHERE job LIKE '%MAN%';
+
+
+--############################################################################################################
+
+
+-- ename starts with vowels
+SELECT ename
+FROM emp
+where ename LIKe 'A%' 
+OR ename LIKe 'E%' 
+OR ename LIKe 'I%' 
+OR ename LIKe 'O%' 
+OR ename LIKe 'U%';
+
+-- ename starts with consonants
+SELECT ename
+FROM emp
+where ename NOT LIKe 'A%' 
+AND ename NOT LIKe 'E%' 
+AND ename NOT LIKe 'I%' 
+AND ename NOT LIKe 'O%' 
+AND ename NOT LIKe 'U%';
+
+
+-- ename starts with vowels and ends with consonants
+SELECT ename
+FROM emp
+WHERE ( ename LIKe 'A%' 
+AND ename LIKe 'E%' 
+AND ename LIKe 'I%' 
+AND ename LIKe 'O%' 
+AND ename LIKe 'U%') 
+AND
+(ename NOT LIKe '%A' 
+OR ename NOT LIKe '%E' 
+OR ename NOT LIKe '%I' 
+OR ename NOT LIKe '%O' 
+OR ename NOT LIKe '%U');
+
+
+
+SELECT emp.*, sal+sal*0.5 as sal_with_hike, sal*12 as anual_sal
+FROM emp
+WHERE deptno IN (20,30)
+AND ((job = 'SALESMAN' OR job = 'ANALYST') AND job != 'PRESIDENT') 
+AND sal BETWEEN 4500 AND 9500
+AND sal*12 BETWEEN 14451 AND 26749
+AND hiredate BETWEEN '01-JAN-1976' AND '31-DEC-1988'
+AND comm IS NOT NULL
+AND ename LIKE 'B__B%L_';
