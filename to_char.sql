@@ -13,6 +13,10 @@ SELECT emp.* , trunc(months_between(sysdate,hiredate)/12) experience
 FROM emp
 WHERE months_between(sysdate,hiredate) > 20*12;
 
+
+SELECT ename, trunc(months_between(sysdate,hiredate)/12) experience
+FROM emp
+WHERE to_number(to_char(sysdate,'yyyy')) - to_number(to_char(hiredate,'yyyy')) >20;
 -- retrive the employee hiredate on [wednesday, thrusday] in the month of march & april & september ?
 SELECT *
 FROM emp
